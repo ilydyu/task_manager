@@ -1,1 +1,5 @@
-# task_manager
+## Запуск
+```make up```
+
+## Тесты
+```make test```

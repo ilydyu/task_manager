@@ -31,9 +31,12 @@ func Router(r *chi.Mux, s *service.Service, secret string) {
 
 				// Tasks
 				r.Get("/tasks/{id}/history", v1.GetTaskHistory)
-				r.Get("/tasks", v1.GetTasks) // Предпологаю, что возвращать надо вообще все задачи, клиент сам отбирает нужные по фильтрации
+				r.Get("/tasks", v1.GetTasks) // Предпологаю, что возвращать надо все задачи, клиент сам отбирает нужные по фильтрации
 				r.Post("/tasks", v1.CreateTask)
 				r.Put("/tasks/{id}", v1.UpdateTask)
+
+				// Complex query
+				r.Get("/teams/stats", v1.GetTeamStats)
 			})
 		})
 	})

@@ -26,5 +26,9 @@ create table if not exists tasks (
         ON UPDATE CASCADE
 );
 
+create index idx_tasks_created_at on tasks(created_at);
+create index idx_tasks_team_creator on tasks(team_id, created_by);
+create index idx_tasks_team_created_at on tasks(team_id, created_at);
+
 -- +goose Down
 drop table if exists tasks;

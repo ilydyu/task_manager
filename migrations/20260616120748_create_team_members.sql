@@ -20,8 +20,8 @@ create table if not exists team_members (
 );
 
 
-CREATE INDEX idx_team_members_team_id ON team_members(team_id);
-CREATE INDEX idx_team_members_user_id ON team_members(user_id);
+create index idx_team_members_team_id on team_members(team_id);
+create index idx_team_members_user_id on team_members(user_id);
 
 -- +goose Down
 drop table if exists team_member;

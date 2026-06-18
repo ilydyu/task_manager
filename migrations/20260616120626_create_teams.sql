@@ -12,6 +12,7 @@ create table if not exists teams (
         ON UPDATE CASCADE
 );
 
-CREATE INDEX idx_teams_created_by ON teams(created_by);
+create index idx_teams_created_by_created_at on teams(created_by, created_at);
+
 -- +goose Down
 drop table if exists teams;

@@ -38,6 +38,7 @@ func Router(r *chi.Mux, s *service.Service, secret string) {
 				// Complex query
 				r.Get("/teams/stats", v1.GetTeamStats)
 				r.Get("/teams/top_creators", v1.GetTopCreators)
+				r.Get("/tasks/invalid_assignments", v1.GetInvalidAssignments)
 			})
 		})
 	})

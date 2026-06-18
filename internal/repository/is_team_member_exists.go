@@ -17,7 +17,7 @@ func (r *Repository) IsTeamMemberExists(ctx context.Context, userID, teamID int6
 	err := tx.QueryRowContext(ctx, query, userID, teamID).Scan(&exists)
 
 	if err != nil {
-		return false, fmt.Errorf("tx.QueryRowContext: %w", err)
+		return false, fmt.Errorf("repository: IsTeamMemberExists: tx.QueryRowContext: %w", err)
 	}
 
 	return exists, nil

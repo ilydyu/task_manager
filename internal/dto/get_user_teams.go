@@ -5,5 +5,5 @@ import (
 )
 
 type GetUserTeamsOutput struct {
-	Teams []domain.Team
+	Teams []domain.Team `json:"teams"`
 }

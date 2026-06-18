@@ -15,18 +15,22 @@ type Redis interface {
 }
 
 type Mysql interface {
-	CreateUser(ctx context.Context, user domain.User) (domain.User, error)
 	CreateTask(ctx context.Context, task *domain.Task) error
 	CreateTeam(ctx context.Context, team *domain.Team) error
 	CreateTeamMember(ctx context.Context, member *domain.TeamMember) error
-	GetTeamByID(ctx context.Context, id int64) (domain.Team, error)
+	CreateUser(ctx context.Context, user *domain.User) error
+	GetInvalidAssignments(ctx context.Context) ([]domain.InvalidAssignment, error)
+	GetTaskByID(ctx context.Context, id int64) (domain.Task, error)
+	GetTaskHistory(ctx context.Context, taskID int64) ([]domain.TaskHistory, error)
+	GetTasks(ctx context.Context, teamID string, assigneeID string, status string, cursor string) ([]domain.Task, error)
 	GetTeamMember(ctx context.Context, userID int64, teamID int64) (domain.TeamMember, error)
+	GetTeamStats(ctx context.Context) ([]domain.TeamStatistics, error)
+	GetTopCreators(ctx context.Context) ([]domain.TopCreatorStats, error)
 	GetUserByEmail(ctx context.Context, email string) (domain.User, error)
-	GetUserByID(ctx context.Context, id int64) (domain.User, error)
-	GetUserTeams(ctx context.Context, userID int64) ([]domain.Team, error)
-	IsExists(ctx context.Context, table string, id int64) (bool, error)
+	GetUserTeams(ctx context.Context, userID int) ([]domain.Team, error)
 	IsTeamMemberExists(ctx context.Context, userID int64, teamID int64) (bool, error)
-	TrackTaskChanges(ctx context.Context, task domain.Task) error
+	TrackTaskChanges(ctx context.Context, task domain.Task, action string, oldValue []byte) error
+	UpdateTask(ctx context.Context, task *domain.Task) error
 }
 
 type Service struct {
